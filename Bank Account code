@@ -1,0 +1,90 @@
+#include<iostream>
+using namespace std;
+class BankAccount{
+    private:
+    string createdOn;
+    int balance;
+    public:
+    int accountnumber;
+    string name;
+    string type;
+    BankAccount(){
+        createdOn ="2026-1-03";
+        balance = 125;
+        accountnumber = 92332321;
+        name = "lakshya";
+        type = "savings";
+    }
+    BankAccount(string date,int bal,int AccNo,string n,string t ){        //parameterized constructor
+         this->createdOn = date;
+         this->balance=bal;
+         this->accountnumber=AccNo;
+         this->name =n;
+         this->type=t;
+    }
+    BankAccount&Account(BankAccount&Account){
+        createdOn = Account.createdOn;
+        balance = Account.balance;
+        name = Account.name;
+        accountnumber = Account.accountnumber;
+        type = Account.type; 
+        
+    }
+
+    string getcreatedDate(){
+        return createdOn;
+    }
+    int getbalance(){
+        return balance;
+    }
+    void setbalance(int newbalance){
+       if(newbalance<0){
+           return ;
+       }
+       balance =newbalance;
+    }
+    int getaccountnumber(){
+        return accountnumber;
+    }
+    string getname(){
+        return name;
+    }
+    string gettype(){
+        return type;
+    }
+    BankAccount&deposit(int amount){
+        if(amount<0){
+         cout<<"invalid amount:";
+         return*this;
+        }
+        balance+=amount;
+        return*this;
+    }
+    BankAccount&withdraw(int amount){
+        if(amount<=0&&amount<=balance){
+            balance-=amount;;
+        }
+        else{
+            cout<<"Invalid Amount:"<<endl;
+        }
+        return*this;
+        
+    }
+    
+};
+int main(){
+    int a,b;
+    //cout<<a<<b;
+    BankAccount bank1;
+    BankAccount bank2{
+        "2026-04-05",4000,12345,"laksh","savings"      //calling parameterized constructor
+    };
+    cout<<"ACCOUNT CREATED ON:"<<bank1.getcreatedDate()<<endl;
+    bank1.setbalance(50000);
+    bank1.withdraw(1250);
+    cout<<"updated Balance:"<<bank1.getbalance()<<endl;
+    cout<<"name:"<<bank2.getname()<<endl;
+    return 0;
+    
+    
+}
